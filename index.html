@@ -1,0 +1,817 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gaon Bazaar - Village Products</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7fff4;
+            color: #263238;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #2e7d32;
+            color: white;
+            padding: 15px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav h2 {
+            font-size: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 500px;
+            padding: 80px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #e8f5e9, #fffde7);
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #1b5e20;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2e7d32;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1b5e20;
+        }
+
+        .hero-image {
+            font-size: 170px;
+        }
+
+        /* SEARCH */
+        .search-box {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .search-box input {
+            width: 80%;
+            max-width: 600px;
+            padding: 15px;
+            border: 2px solid #81c784;
+            border-radius: 30px;
+            font-size: 17px;
+        }
+
+        /* SECTION */
+        section {
+            padding: 60px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1b5e20;
+            font-size: 32px;
+            margin-bottom: 35px;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .category {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #00000015;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+        }
+
+        .category .emoji {
+            font-size: 50px;
+        }
+
+        .category h3 {
+            margin-top: 10px;
+            color: #2e7d32;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px #00000015;
+            padding-bottom: 20px;
+        }
+
+        .product-image {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+            background: #e8f5e9;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product h3 {
+            color: #1b5e20;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #e65100;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .stars {
+            color: #f9a825;
+            margin-bottom: 12px;
+        }
+
+        /* STEPS */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .step {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px #00000015;
+        }
+
+        .step-number {
+            background: #2e7d32;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin: 15px 0 8px;
+            color: #1b5e20;
+        }
+
+        /* REVIEWS */
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .review {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+
+        .review p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #e8f5e9;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 18px;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 10px;
+            font-size: 18px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* CART */
+        #cartCount {
+            background: #ff9800;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+
+        @media(max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            .hero {
+                text-align: center;
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero-image {
+                font-size: 100px;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h2>🌾 Gaon Bazaar</h2>
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#steps">How It Works</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        🛒 <span id="cartCount">0</span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <h1>Fresh Products Directly From Village 🌾</h1>
+
+        <p>
+            Buy fresh fruits, vegetables, homemade food,
+            grains, honey and traditional village products
+            directly from local farmers and producers.
+        </p>
+
+        <a href="#products" class="btn">
+            🛍️ Shop Products
+        </a>
+
+    </div>
+
+    <div class="hero-image">
+        🏡🌾
+    </div>
+
+</section>
+
+<!-- SEARCH -->
+<div class="search-box">
+
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search fruits, vegetables, honey..."
+        onkeyup="searchProducts()"
+    >
+
+</div>
+
+<!-- CATEGORIES -->
+<section>
+
+    <h2 class="section-title">
+        🛒 Product Categories
+    </h2>
+
+    <div class="categories">
+
+        <div class="category">
+            <div class="emoji">🍎</div>
+            <h3>Fruits</h3>
+        </div>
+
+        <div class="category">
+            <div class="emoji">🥕</div>
+            <h3>Vegetables</h3>
+        </div>
+
+        <div class="category">
+            <div class="emoji">🍯</div>
+            <h3>Honey</h3>
+        </div>
+
+        <div class="category">
+            <div class="emoji">🌾</div>
+            <h3>Grains</h3>
+        </div>
+
+        <div class="category">
+            <div class="emoji">🥭</div>
+            <h3>Pickles</h3>
+        </div>
+
+        <div class="category">
+            <div class="emoji">🍪</div>
+            <h3>Homemade Food</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+
+    <h2 class="section-title">
+        🌱 Our Village Products
+    </h2>
+
+    <div class="products" id="productList">
+
+        <!-- PRODUCT 1 -->
+        <div class="product">
+
+            <div class="product-image">
+                🍯
+            </div>
+
+            <div class="product-info">
+
+                <h3>Pure Village Honey</h3>
+
+                <div class="stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p>100% natural honey collected from village farms.</p>
+
+                <div class="price">₹350 / 500g</div>
+
+                <button class="btn" onclick="addToCart()">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 2 -->
+        <div class="product">
+
+            <div class="product-image">
+                🥭
+            </div>
+
+            <div class="product-info">
+
+                <h3>Fresh Mango</h3>
+
+                <div class="stars">
+                    ⭐⭐⭐⭐☆
+                </div>
+
+                <p>Fresh and naturally grown village mangoes.</p>
+
+                <div class="price">₹120 / kg</div>
+
+                <button class="btn" onclick="addToCart()">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 3 -->
+        <div class="product">
+
+            <div class="product-image">
+                🥕
+            </div>
+
+            <div class="product-info">
+
+                <h3>Fresh Vegetables</h3>
+
+                <div class="stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p>Fresh vegetables directly from local farmers.</p>
+
+                <div class="price">₹60 / kg</div>
+
+                <button class="btn" onclick="addToCart()">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 4 -->
+        <div class="product">
+
+            <div class="product-image">
+                🌾
+            </div>
+
+            <div class="product-info">
+
+                <h3>Village Wheat</h3>
+
+                <div class="stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p>Fresh village wheat grown naturally by farmers.</p>
+
+                <div class="price">₹55 / kg</div>
+
+                <button class="btn" onclick="addToCart()">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 5 -->
+        <div class="product">
+
+            <div class="product-image">
+                🥭
+            </div>
+
+            <div class="product-info">
+
+                <h3>Homemade Mango Pickle</h3>
+
+                <div class="stars">
+                    ⭐⭐⭐⭐☆
+                </div>
+
+                <p>Traditional homemade mango pickle.</p>
+
+                <div class="price">₹180 / 500g</div>
+
+                <button class="btn" onclick="addToCart()">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 6 -->
+        <div class="product">
+
+            <div class="product-image">
+                🍪
+            </div>
+
+            <div class="product-info">
+
+                <h3>Village Homemade Snacks</h3>
+
+                <div class="stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p>Traditional snacks prepared with village recipes.</p>
+
+                <div class="price">₹150 / pack</div>
+
+                <button class="btn" onclick="addToCart()">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="steps">
+
+    <h2 class="section-title">
+        🛍️ How To Buy Products
+    </h2>
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">1</div>
+
+            <h3>Choose Product</h3>
+
+            <p>
+                Browse fruits, vegetables,
+                food and other village products.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">2</div>
+
+            <h3>Add To Cart</h3>
+
+            <p>
+                Select your products and
+                add them to your shopping cart.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">3</div>
+
+            <h3>Place Order</h3>
+
+            <p>
+                Enter your delivery address
+                and place your order.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">4</div>
+
+            <h3>Farmer Prepares</h3>
+
+            <p>
+                Local farmers and producers
+                prepare your fresh products.
+            </p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">5</div>
+
+            <h3>Delivery</h3>
+
+            <p>
+                Your village products are
+                delivered to your home.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+
+    <h2 class="section-title">
+        ⭐ Customer Reviews
+    </h2>
+
+    <div class="reviews">
+
+        <div class="review">
+
+            <h3>Rahul ⭐⭐⭐⭐⭐</h3>
+
+            <p>
+                "The honey was very fresh and tasty.
+                I really liked the quality."
+            </p>
+
+        </div>
+
+        <div class="review">
+
+            <h3>Priya ⭐⭐⭐⭐⭐</h3>
+
+            <p>
+                "Fresh vegetables delivered to my home.
+                Very good experience."
+            </p>
+
+        </div>
+
+        <div class="review">
+
+            <h3>Amit ⭐⭐⭐⭐☆</h3>
+
+            <p>
+                "The homemade pickle tasted just
+                like traditional village pickle."
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+
+    <h2 class="section-title">
+        🏡 About Gaon Bazaar
+    </h2>
+
+    <p>
+        Gaon Bazaar is a platform designed to connect
+        village farmers and local producers directly
+        with customers. Our goal is to help customers
+        get fresh village products while helping
+        local producers reach more customers.
+    </p>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+
+    <h2 class="section-title">
+        📞 Contact Us
+    </h2>
+
+    <p>📍 Village Market, India</p>
+    <p>📞 +91 98765 43210</p>
+    <p>📧 hello@gaonbazaar.com</p>
+
+    <br>
+
+    <button class="btn" onclick="contactMessage()">
+        Contact Seller
+    </button>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 Gaon Bazaar | Made with ❤️ for Village Farmers
+    </p>
+
+</footer>
+
+<script>
+
+    /* CART */
+    let cart = 0;
+
+    function addToCart() {
+
+        cart++;
+
+        document.getElementById("cartCount").innerText = cart;
+
+        alert("✅ Product added to your cart!");
+
+    }
+
+
+    /* SEARCH */
+    function searchProducts() {
+
+        let input =
+            document.getElementById("search").value.toLowerCase();
+
+        let products =
+            document.querySelectorAll(".product");
+
+        products.forEach(function(product) {
+
+            let name =
+                product.querySelector("h3").innerText.toLowerCase();
+
+            if (name.includes(input)) {
+
+                product.style.display = "block";
+
+            } else {
+
+                product.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* CONTACT */
+    function contactMessage() {
+
+        alert(
+            "📞 Thank you for contacting Gaon Bazaar! " +
+            "Our seller will contact you soon."
+        );
+
+    }
+
+</script>
+
+</body>
+</html>
+```
